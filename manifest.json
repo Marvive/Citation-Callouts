@@ -1,0 +1,11 @@
+{
+	"id": "logos-callout-paste",
+	"name": "Logos Callout Paste",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Detects Logos Bible Software content and formats it as callouts when pasting",
+	"author": "Your Name",
+	"authorUrl": "",
+	"fundingUrl": "",
+	"isDesktopOnly": false
+} 
