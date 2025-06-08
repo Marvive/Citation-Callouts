@@ -27,9 +27,9 @@ export default class LogosCalloutPastePlugin extends Plugin {
 			// Get clipboard content
 			const clipboardText = await navigator.clipboard.readText();
 			
-			// Check if content contains Logos URL
-			if (!this.isLogosContent(clipboardText)) {
-				new Notice('Clipboard does not contain Logos Bible Software content');
+			// Check if clipboard has content
+			if (!clipboardText || clipboardText.trim() === '') {
+				new Notice('Clipboard is empty');
 				return;
 			}
 
@@ -39,16 +39,12 @@ export default class LogosCalloutPastePlugin extends Plugin {
 			
 			// Insert formatted content
 			editor.replaceSelection(formattedContent);
-			new Notice('Logos content pasted as callout');
+			new Notice('Content pasted as Logos callout');
 			
 		} catch (error) {
 			console.error('Error pasting Logos content:', error);
 			new Notice('Error accessing clipboard or formatting content');
 		}
-	}
-
-	isLogosContent(text: string): boolean {
-		return text.includes('https://ref.ly/logosres');
 	}
 
 	extractBookName(text: string): string {
