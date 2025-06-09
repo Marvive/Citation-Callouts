@@ -2,7 +2,6 @@ import { Plugin, Editor, MarkdownView, Notice } from 'obsidian';
 
 export default class LogosCalloutPastePlugin extends Plugin {
 	async onload() {
-		console.log('Loading Logos Callout Paste plugin');
 
 		// Add command for special Logos paste
 		this.addCommand({
@@ -35,22 +34,18 @@ export default class LogosCalloutPastePlugin extends Plugin {
 					if (clipboardItem.types.includes('text/html')) {
 						const htmlBlob = await clipboardItem.getType('text/html');
 						const htmlText = await htmlBlob.text();
-						console.log('Raw HTML from clipboard:', htmlText); // Debug
 						clipboardContent = this.convertHtmlToMarkdown(htmlText);
 						hasRichText = true;
-						console.log('Converted to markdown:', clipboardContent); // Debug
 						break;
 					}
 				}
 			} catch (e) {
-				console.log('Rich text access failed:', e); // Debug
 				// Rich text access failed, will use plain text
 			}
 			
 			// Fallback to plain text if no rich text
 			if (!hasRichText) {
 				clipboardContent = await navigator.clipboard.readText();
-				console.log('Using plain text:', clipboardContent); // Debug
 			}
 			
 			// Check if clipboard has content
@@ -61,7 +56,6 @@ export default class LogosCalloutPastePlugin extends Plugin {
 
 			// Extract book name and format as callout
 			const bookName = this.extractBookName(clipboardContent);
-			console.log('Extracted book name:', bookName); // Debug
 			const formattedContent = this.formatAsLogosCallout(clipboardContent, bookName);
 			
 			// Insert formatted content
@@ -127,12 +121,9 @@ export default class LogosCalloutPastePlugin extends Plugin {
 	}
 
 	extractBookName(text: string): string {
-		console.log('Extracting book name from text:', text); // Debug
-		
 		// FIRST: Look for book titles in markdown links [BookName](url) - highest priority
 		const linkMatch = text.match(/\[([^\]]+)\]\([^)]*ref\.ly[^)]*\)/);
 		if (linkMatch) {
-			console.log('Found link match:', linkMatch[1]); // Debug
 			// Remove underscores and clean up
 			return linkMatch[1].replace(/_/g, '').trim();
 		}
@@ -141,7 +132,6 @@ export default class LogosCalloutPastePlugin extends Plugin {
 		// Pattern: [_BookName_] or *BookName*
 		const italicMatch = text.match(/\[_([^_]+)_\]/);
 		if (italicMatch) {
-			console.log('Found italic match:', italicMatch[1]); // Debug
 			return italicMatch[1];
 		}
 
@@ -153,7 +143,6 @@ export default class LogosCalloutPastePlugin extends Plugin {
 			// Look for pattern: "Author, Book Title (Location: Publisher, Year)"
 			const authorBookMatch = line.match(/^([^,]+),\s+([^(]+)\s+\(/);
 			if (authorBookMatch) {
-				console.log('Found author-book match:', authorBookMatch[2]); // Debug
 				return authorBookMatch[2].trim();
 			}
 		}
@@ -164,7 +153,6 @@ export default class LogosCalloutPastePlugin extends Plugin {
 			const bookTitle = italicBookMatch[1].trim();
 			// Make sure it's not just a person's name (should be longer than 2 words usually)
 			if (bookTitle.split(' ').length > 1) {
-				console.log('Found italic book match:', bookTitle); // Debug
 				return bookTitle;
 			}
 		}
@@ -178,14 +166,12 @@ export default class LogosCalloutPastePlugin extends Plugin {
 					// Look for title-like text in the same line
 					const titleMatch = line.match(/\[_([^_]+)_\]/);
 					if (titleMatch) {
-						console.log('Found URL title match:', titleMatch[1]); // Debug
 						return titleMatch[1];
 					}
 				}
 			}
 		}
 
-		console.log('No book name found, using fallback'); // Debug
 		return 'Logos Resource';
 	}
 
@@ -212,6 +198,6 @@ export default class LogosCalloutPastePlugin extends Plugin {
 	}
 
 	onunload() {
-		console.log('Unloading Logos Callout Paste plugin');
+		// Plugin cleanup
 	}
 } 

@@ -1,0 +1,10 @@
+.callout[data-callout="logos"] {
+  --callout-color: 59, 130, 246;
+  --callout-icon: lucide-book;
+}
+
+.callout[data-callout="logos"] .callout-icon .svg-icon {
+  color: rgb(59, 130, 246);
+}
+
+ 
