@@ -16,7 +16,7 @@ An Obsidian plugin that automatically detects content from Logos Bible Software 
 
 1. Open Obsidian Settings
 2. Go to **Community Plugins** and ensure Safe Mode is **OFF**
-3. Click **Browse** and search for "Logos Callout Paste"
+3. Click **Browse** and search for "Obsidian Logos Callouts"
 4. Click **Install** and then **Enable**
 
 *This plugin is available in the official Obsidian Community Plugin directory.*
