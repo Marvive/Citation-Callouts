@@ -4,10 +4,9 @@ An Obsidian plugin that automatically detects content from Logos Bible Software 
 
 ## Features
 
-- **Automatic Detection**: Detects when you're pasting content from Logos Bible Software by checking for `https://ref.ly/logosres` URLs
 - **Smart Book Name Extraction**: Automatically extracts the book name from your citation
 - **Rich Text Support**: Preserves formatting including bold, italic, and hyperlinks
-- **Beautiful Callouts**: Creates formatted callouts with the book icon and extracted book name
+- **Beautiful Callouts**: Creates formatted callouts with the book icon and extracted book name as the callout title
 - **Multiple Access Methods**: Use command palette, ribbon icon, or keyboard shortcut
 
 ## Installation
