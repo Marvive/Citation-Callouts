@@ -1,5 +1,5 @@
 {
-  "name": "logos-callout-paste",
+  "name": "Obsidian-Logos-Callouts",
   "version": "1.0.0",
   "description": "Detects Logos Bible Software content and formats it as callouts when pasting",
   "main": "main.js",
