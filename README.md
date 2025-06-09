@@ -84,7 +84,7 @@ John Piper, [_Desiring God_](https://ref.ly/logosres/desiringgod?ref=Page.p+82&o
 
 ## Support
 
-If you encounter any issues or have feature requests, please [create an issue](https://github.com/Marvive/logos-callout-paste/issues) on GitHub.
+If you encounter any issues or have feature requests, please [create an issue](https://github.com/Marvive/Obsidian-Logos-Callouts/issues) on GitHub.
 
 ## Contributing
 
