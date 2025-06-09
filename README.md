@@ -32,6 +32,7 @@ An Obsidian plugin that automatically detects content from Logos Bible Software 
    - **Keyboard Shortcut**: Assign a custom shortcut in Settings → Hotkeys
 
 ### Example
+![Logos Plugin Example](./assets/Demo.png)
 
 **From Logos (copied to clipboard):**
 ```
