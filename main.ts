@@ -91,10 +91,15 @@ export default class LogosCalloutPastePlugin extends Plugin {
 			return `[${cleanContent}](${url})`;
 		});
 		
-		// Convert emphasis: <em> or <i> to *text*
+		// Handle nested bold/italic combinations first
+		// Pattern: <strong><em>text</em></strong> or <b><i>text</i></b> -> ***text***
+		markdown = markdown.replace(/<(?:strong|b)[^>]*><(?:em|i)[^>]*>([^<]*)<\/(?:em|i)><\/(?:strong|b)>/gi, '***$1***');
+		markdown = markdown.replace(/<(?:em|i)[^>]*><(?:strong|b)[^>]*>([^<]*)<\/(?:strong|b)><\/(?:em|i)>/gi, '***$1***');
+		
+		// Convert remaining emphasis: <em> or <i> to *text*
 		markdown = markdown.replace(/<(?:em|i)[^>]*>([^<]*)<\/(?:em|i)>/gi, '*$1*');
 		
-		// Convert strong: <strong> or <b> to **text**
+		// Convert remaining strong: <strong> or <b> to **text**
 		markdown = markdown.replace(/<(?:strong|b)[^>]*>([^<]*)<\/(?:strong|b)>/gi, '**$1**');
 		
 		// Convert divs to line breaks
@@ -114,6 +119,9 @@ export default class LogosCalloutPastePlugin extends Plugin {
 		
 		// Clean up multiple line breaks
 		markdown = markdown.replace(/\n{3,}/g, '\n\n');
+		
+		// Clean up excessive asterisks (more than 3 in a row)
+		markdown = markdown.replace(/\*{4,}/g, '***');
 		
 		return markdown.trim();
 	}
