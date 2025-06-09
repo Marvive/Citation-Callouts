@@ -61,12 +61,12 @@ John Piper, [_Desiring God_](https://ref.ly/logosres/desiringgod?ref=Page.p+82&o
 1. Clone this repository into your vault's plugins folder:
    ```bash
    cd /path/to/your/vault/.obsidian/plugins/
-   git clone https://github.com/Marvive/logos-callout-paste.git
+   git clone https://github.com/Marvive/Obsidian-Logos-Callouts.git
    ```
 
 2. Install dependencies:
    ```bash
-   cd logos-callout-paste
+   cd Obsidian-Logos-Callouts
    npm install
    ```
 
