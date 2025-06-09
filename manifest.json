@@ -1,9 +1,9 @@
 {
-	"id": "logos-callout-paste",
-	"name": "Logos Callout Paste",
+	"id": "Obsidian-Logos-Callouts",
+	"name": "Obsidian Logos Callouts",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Detects Logos Bible Software content and formats it as callouts",
+	"description": "Elegantly pastes quotes with citations from Logos Bible Software in a custom Callout.",
 	"author": "Michael Marvive",
 	"authorUrl": "https://github.com/Marvive",
 	"fundingUrl": "https://github.com/sponsors/Marvive",
