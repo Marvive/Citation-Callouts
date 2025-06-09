@@ -1,4 +1,4 @@
-# Logos Callout Paste Plugin
+# Obsidian Logos Callouts
 
 An Obsidian plugin that automatically detects content from Logos Bible Software and formats it as beautiful callouts when pasting.
 
