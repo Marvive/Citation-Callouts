@@ -2,16 +2,6 @@ import { Plugin, Editor, MarkdownView, Notice } from 'obsidian';
 
 export default class LogosCalloutPastePlugin extends Plugin {
 	async onload() {
-		// Register custom callout type with book icon
-		this.registerMarkdownPostProcessor((element, context) => {
-			const callouts = element.querySelectorAll('.callout[data-callout="logos"]');
-			callouts.forEach((callout) => {
-				const calloutIcon = callout.querySelector('.callout-icon');
-				if (calloutIcon) {
-					calloutIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`;
-				}
-			});
-		});
 
 		// Add command for special Logos paste
 		this.addCommand({
@@ -188,7 +178,7 @@ export default class LogosCalloutPastePlugin extends Plugin {
 	formatAsLogosCallout(content: string, bookName: string): string {
 		// Split content into lines and process
 		const lines = content.split('\n');
-		const calloutLines = [`> [!Logos|book] ${bookName}`];
+		const calloutLines = [`> [!Logos] ${bookName}`];
 		
 		// Add each line of original content with proper callout formatting
 		for (const line of lines) {
