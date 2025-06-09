@@ -121,30 +121,20 @@ export default class LogosCalloutPastePlugin extends Plugin {
 	extractBookName(text: string): string {
 		console.log('Extracting book name from text:', text); // Debug
 		
+		// FIRST: Look for book titles in markdown links [BookName](url) - highest priority
+		const linkMatch = text.match(/\[([^\]]+)\]\([^)]*ref\.ly[^)]*\)/);
+		if (linkMatch) {
+			console.log('Found link match:', linkMatch[1]); // Debug
+			// Remove underscores and clean up
+			return linkMatch[1].replace(/_/g, '').trim();
+		}
+
 		// Look for text in square brackets or italics that appears to be a book title
 		// Pattern: [_BookName_] or *BookName*
 		const italicMatch = text.match(/\[_([^_]+)_\]/);
 		if (italicMatch) {
 			console.log('Found italic match:', italicMatch[1]); // Debug
 			return italicMatch[1];
-		}
-
-		// Alternative pattern: *BookName* - look for the LAST italicized text (usually the book title)
-		const asteriskMatches = text.match(/\*([^*]+)\*/g);
-		if (asteriskMatches && asteriskMatches.length > 0) {
-			// Get the last match and extract the content
-			const lastMatch = asteriskMatches[asteriskMatches.length - 1];
-			const bookTitle = lastMatch.replace(/\*/g, '');
-			console.log('Found last asterisk match:', bookTitle); // Debug
-			return bookTitle;
-		}
-
-		// Look for book titles in markdown links [BookName](url)
-		const linkMatch = text.match(/\[([^\]]+)\]\([^)]*ref\.ly[^)]*\)/);
-		if (linkMatch) {
-			console.log('Found link match:', linkMatch[1]); // Debug
-			// Remove underscores and clean up
-			return linkMatch[1].replace(/_/g, '').trim();
 		}
 
 		// Pattern for author citations: "Author Name, Book Title (Publication info)"
