@@ -8,7 +8,6 @@ An Obsidian plugin that formats quotes with citations from various sources into 
 - **Rich Text Support**: Preserves formatting including bold, italic, and hyperlinks
 - **Beautiful Callouts**: Creates formatted callouts with the book icon and extracted source name as the callout title
 - **Multiple Access Methods**: Use command palette, ribbon icon, or keyboard shortcut
-- **Works with Multiple Sources**: Designed for Logos Bible Software but works with any properly formatted citations
 
 ## Installation
 
@@ -23,8 +22,6 @@ An Obsidian plugin that formats quotes with citations from various sources into 
 
 ## Usage
 
-**Note**: This plugin was originally designed for Logos Bible Software but works with any citation that includes a source reference.
-
 1. Copy content that includes a citation with a URL or source reference
 2. In Obsidian, use one of these methods:
    - **Command Palette**: Press `Ctrl/Cmd + P` and search for "Paste as Citation Callout"
@@ -34,7 +31,7 @@ An Obsidian plugin that formats quotes with citations from various sources into 
 ### Example
 ![Citation Plugin Example](./assets/Demo.png)
 
-**From Logos (copied to clipboard):**
+**Quote in Clipboard:**
 ```
 The fuel of worship is a true vision of the greatness of God; the fire that makes the fuel burn white hot is the quickening of the Holy Spirit; the furnace made alive and warm by the flame of truth is our renewed spirit; and the resulting heat of our affections is powerful worship, pushing its way out in confessions, longings, acclamations, tears, songs, shouts, bowed heads, lifted hands, and obedient lives.
 
