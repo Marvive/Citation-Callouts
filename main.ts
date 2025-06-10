@@ -1,27 +1,27 @@
 import { Plugin, Editor, MarkdownView, Notice } from 'obsidian';
 
-export default class LogosCalloutPastePlugin extends Plugin {
+export default class CitationCalloutPastePlugin extends Plugin {
 	async onload() {
 
-		// Add command for special Logos paste
+		// Add command for special Citation paste
 		this.addCommand({
-			id: 'paste-logos-callout',
-			name: 'Paste as Logos Callout',
+			id: 'paste-citation-callout',
+			name: 'Paste as Citation Callout',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				this.pasteAsLogosCallout(editor);
+				this.pasteAsCitationCallout(editor);
 			},
 		});
 
 		// Add ribbon icon
-		this.addRibbonIcon('book', 'Paste as Logos Callout', (evt: MouseEvent) => {
+		this.addRibbonIcon('book', 'Paste as Citation Callout', (evt: MouseEvent) => {
 			const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
 			if (activeView) {
-				this.pasteAsLogosCallout(activeView.editor);
+				this.pasteAsCitationCallout(activeView.editor);
 			}
 		});
 	}
 
-	async pasteAsLogosCallout(editor: Editor) {
+	async pasteAsCitationCallout(editor: Editor) {
 		try {
 			// Try to get rich text first, fallback to plain text
 			let clipboardContent = '';
@@ -56,14 +56,14 @@ export default class LogosCalloutPastePlugin extends Plugin {
 
 			// Extract book name and format as callout
 			const bookName = this.extractBookName(clipboardContent);
-			const formattedContent = this.formatAsLogosCallout(clipboardContent, bookName);
+			const formattedContent = this.formatAsCitationCallout(clipboardContent, bookName);
 			
 			// Insert formatted content
 			editor.replaceSelection(formattedContent);
-			new Notice(`Content pasted as Logos callout: ${bookName}`);
+			new Notice(`Content pasted as Citation callout: ${bookName}`);
 			
 		} catch (error) {
-			console.error('Error pasting Logos content:', error);
+			console.error('Error pasting Citation content:', error);
 			new Notice('Error accessing clipboard or formatting content');
 		}
 	}
@@ -175,10 +175,10 @@ export default class LogosCalloutPastePlugin extends Plugin {
 		return 'Logos Resource';
 	}
 
-	formatAsLogosCallout(content: string, bookName: string): string {
+	formatAsCitationCallout(content: string, bookName: string): string {
 		// Split content into lines and process
 		const lines = content.split('\n');
-		const calloutLines = [`> [!Logos] ${bookName}`];
+		const calloutLines = [`> [!Citation] ${bookName}`];
 		
 		// Add each line of original content with proper callout formatting
 		for (const line of lines) {
