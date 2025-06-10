@@ -1,7 +1,7 @@
 {
-  "name": "Obsidian-Logos-Callouts",
+  "name": "citation-callouts",
   "version": "1.0.0",
-  "description": "Detects Logos Bible Software content and formats it as callouts when pasting",
+  "description": "Formats quotes with citations from various sources into callouts",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",

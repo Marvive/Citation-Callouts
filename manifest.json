@@ -1,9 +1,9 @@
 {
-	"id": "Obsidian-Logos-Callouts",
-	"name": "Obsidian Logos Callouts",
+	"id": "citation-callouts",
+	"name": "Citation Callouts",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Elegantly pastes quotes with citations from Logos Bible Software in a custom Callout.",
+	"description": "Elegantly formats quotes with citations from various sources into custom callouts.",
 	"author": "Michael Marvive",
 	"authorUrl": "https://github.com/Marvive",
 	"fundingUrl": "https://github.com/sponsors/Marvive",
