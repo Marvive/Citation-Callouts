@@ -1,4 +1,4 @@
-import { Plugin, Editor, MarkdownView, Notice } from 'obsidian';
+import { Plugin, Editor, MarkdownView, Notice, htmlToMarkdown } from 'obsidian';
 
 export default class CitationCalloutPastePlugin extends Plugin {
 	async onload() {
@@ -34,7 +34,7 @@ export default class CitationCalloutPastePlugin extends Plugin {
 					if (clipboardItem.types.includes('text/html')) {
 						const htmlBlob = await clipboardItem.getType('text/html');
 						const htmlText = await htmlBlob.text();
-						clipboardContent = this.convertHtmlToMarkdown(htmlText);
+						clipboardContent = htmlToMarkdown(htmlText);
 						hasRichText = true;
 						break;
 					}
@@ -66,58 +66,6 @@ export default class CitationCalloutPastePlugin extends Plugin {
 			console.error('Error pasting Citation content:', error);
 			new Notice('Error accessing clipboard or formatting content');
 		}
-	}
-
-	convertHtmlToMarkdown(html: string): string {
-		// Simple HTML to Markdown conversion for common elements
-		let markdown = html;
-		
-		// Convert line breaks and paragraphs first to preserve structure
-		markdown = markdown.replace(/<br\s*\/?>/gi, '\n');
-		markdown = markdown.replace(/<\/p>/gi, '\n\n');
-		markdown = markdown.replace(/<p[^>]*>/gi, '');
-		
-		// Convert links: <a href="url">text</a> to [text](url)
-		// Handle nested tags inside links (like <i> tags inside <a> tags)
-		markdown = markdown.replace(/<a[^>]+href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi, (match, url, content) => {
-			// Clean up any nested HTML tags in the link content
-			const cleanContent = content.replace(/<[^>]+>/g, '');
-			return `[${cleanContent}](${url})`;
-		});
-		
-		// Handle nested bold/italic combinations first
-		// Pattern: <strong><em>text</em></strong> or <b><i>text</i></b> -> ***text***
-		markdown = markdown.replace(/<(?:strong|b)[^>]*><(?:em|i)[^>]*>([^<]*)<\/(?:em|i)><\/(?:strong|b)>/gi, '***$1***');
-		markdown = markdown.replace(/<(?:em|i)[^>]*><(?:strong|b)[^>]*>([^<]*)<\/(?:strong|b)><\/(?:em|i)>/gi, '***$1***');
-		
-		// Convert remaining emphasis: <em> or <i> to *text*
-		markdown = markdown.replace(/<(?:em|i)[^>]*>([^<]*)<\/(?:em|i)>/gi, '*$1*');
-		
-		// Convert remaining strong: <strong> or <b> to **text**
-		markdown = markdown.replace(/<(?:strong|b)[^>]*>([^<]*)<\/(?:strong|b)>/gi, '**$1**');
-		
-		// Convert divs to line breaks
-		markdown = markdown.replace(/<div[^>]*>/gi, '\n');
-		markdown = markdown.replace(/<\/div>/gi, '');
-		
-		// Remove other HTML tags
-		markdown = markdown.replace(/<[^>]+>/g, '');
-		
-		// Decode common HTML entities
-		markdown = markdown.replace(/&amp;/g, '&');
-		markdown = markdown.replace(/&lt;/g, '<');
-		markdown = markdown.replace(/&gt;/g, '>');
-		markdown = markdown.replace(/&quot;/g, '"');
-		markdown = markdown.replace(/&#39;/g, "'");
-		markdown = markdown.replace(/&nbsp;/g, ' ');
-		
-		// Clean up multiple line breaks
-		markdown = markdown.replace(/\n{3,}/g, '\n\n');
-		
-		// Clean up excessive asterisks (more than 3 in a row)
-		markdown = markdown.replace(/\*{4,}/g, '***');
-		
-		return markdown.trim();
 	}
 
 	extractBookName(text: string): string {
