@@ -6,14 +6,14 @@ export default class CitationCalloutPastePlugin extends Plugin {
 		// Add command for special Citation paste
 		this.addCommand({
 			id: 'paste-citation-callout',
-			name: 'Paste as Citation Callout',
+			name: 'Paste as citation callout',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				this.pasteAsCitationCallout(editor);
 			},
 		});
 
 		// Add ribbon icon
-		this.addRibbonIcon('book', 'Paste as Citation Callout', (evt: MouseEvent) => {
+		this.addRibbonIcon('book', 'Paste as citation callout', (evt: MouseEvent) => {
 			const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
 			if (activeView) {
 				this.pasteAsCitationCallout(activeView.editor);
